@@ -46,8 +46,12 @@ def two_sum_brute_force(numbers, target):
 # Part B: Optimized with Dictionary
 def two_sum_optimized(numbers, target):
     seen = {}  # Dictionary to store {number: index}
-    
-    pass
+    for i in range(len(numbers)):
+        needed = target - numbers[i]
+        if needed in seen:
+            return (seen[needed], i)
+        seen[numbers[i]] = i
+    return None
 
 # Test cases
 test_cases = [
@@ -113,20 +117,20 @@ for nums, n in test_cases:
 # Helper function: Count all characters in a string
 def count_characters(s):
     counts = {}
-    # TODO: Loop through string and count each character
-    # If character exists in counts, increment it
-    # If not, set it to 1
+    for char in s:
+        if char in counts:
+            counts[char] += 1
+        else:
+            counts[char] = 1
     return counts
 
 # Main function: Find first unique character
 def first_unique_character(s):
     # Step 1: Get character counts using helper function
     char_counts = count_characters(s)
-
-    # Step 2: Loop through string with index to find first unique
-    # TODO: Use for i in range(len(s)) to check each character
-    # Return i if char_counts[s[i]] == 1
-
+    for i in range (len(s)):
+        if char_counts[s[i]] == 1:
+            return i
     # Step 3: Return -1 if no unique character found
     return -1
 
